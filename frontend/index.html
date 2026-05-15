@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storyscapes | Experience the World</title>
+    
+    <!-- Premium Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+    <!-- Global Paper Grain Texture & Ambient Glows -->
+    <div class="noise-overlay"></div>
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+
+    <!-- Smooth Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">Storyscapes.</div>
+        <div class="nav-links">
+            <a href="#" class="nav-link">Destinations</a>
+            <a href="#" class="nav-link">Stories</a>
+            <a href="#" class="nav-link">Journal</a>
+        </div>
+				<div class="nav-actions">
+						<a href="./pages/auth.html" class="btn-primary">Sign In</a>
+				</div>
+    </nav>
+
+    <main>
+        <!-- 1. Cinematic Editorial Hero -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-text-wrapper">
+                    <h1 class="hero-title">
+                        <span class="line"><span class="word">Don't</span> <span class="word">just</span></span>
+                        <span class="line"><span class="word italic">visit.</span></span>
+                    </h1>
+                    <h1 class="hero-title large">
+                        <span class="line"><span class="word">Experience.</span></span>
+                    </h1>
+                </div>
+                <p class="hero-subtitle">
+                    Uncover the hidden narratives, local legends, and raw emotions woven into the earth's most beautiful destinations.
+                </p>
+                <div class="hero-scroll-indicator">
+                    <span class="scroll-text">Scroll to explore</span>
+                    <div class="scroll-line"></div>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="image-reveal-mask">
+                    <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?q=80&w=2000&auto=format&fit=crop" alt="Parisian morning light" class="hero-image">
+                </div>
+                <div class="image-caption">
+                    <p class="caption-title">Paris, France</p>
+                    <p class="caption-story">Morning light cascading through centuries-old stone streets.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. The Ethos Section -->
+        <section class="ethos-section">
+            <div class="ethos-content">
+                <p class="ethos-label">Our Philosophy</p>
+                <h2 class="ethos-text">
+                    We believe travel is not about ticking boxes. It is about the <span class="italic-accent">stories</span> that change us, the <span class="italic-accent">cultures</span> that welcome us, and the <span class="italic-accent">memories</span> that outlast the journey.
+                </h2>
+            </div>
+        </section>
+
+        <!-- 3. Featured Narratives (Pinned Image Stack) -->
+        <section class="pinned-stack-section">
+            <div class="stack-container">
+                <div class="stack-left">
+                    <div class="stack-text-content">
+                        <h2 class="stack-title">Curated Narratives</h2>
+                        <p class="stack-desc">Dive into handpicked stories from across the globe. Feel the rhythm of forgotten cities and the silence of ancient forests before you even pack your bags.</p>
+                        <a href="#" class="btn-outline">Read the Journal</a>
+                    </div>
+                </div>
+                
+                <div class="stack-right">
+                    <!-- Card 1 -->
+                    <div class="stack-card card-1">
+                        <img src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?q=80&w=1500&auto=format&fit=crop" alt="Mountain misty peaks">
+                        <div class="card-overlay">
+                            <h3>Whispers of the Alps</h3>
+                            <p>Switzerland</p>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="stack-card card-2">
+                        <img src="https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?q=80&w=1500&auto=format&fit=crop" alt="Kyoto temples">
+                        <div class="card-overlay">
+                            <h3>The Silent Temples</h3>
+                            <p>Kyoto, Japan</p>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="stack-card card-3">
+                        <img src="https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?q=80&w=1500&auto=format&fit=crop" alt="Desert dunes">
+                        <div class="card-overlay">
+                            <h3>Ocean of Sand</h3>
+                            <p>Sahara, Morocco</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Explore Destinations (Grid) -->
+        <section class="destinations-section">
+            <div class="section-header">
+                <h2>Begin Your Journey</h2>
+                <a href="#" class="link-arrow">View All Destinations &rarr;</a>
+            </div>
+            
+            <div class="destinations-grid">
+                <a href="#" class="dest-card">
+                    <div class="dest-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?q=80&w=1000&auto=format&fit=crop" alt="Rome">
+                    </div>
+                    <div class="dest-info">
+                        <h4>Rome</h4>
+                        <p>The Eternal Echoes</p>
+                    </div>
+                </a>
+								<a href="#" class="dest-card">
+										<div class="dest-image-wrapper">
+												<img src="https://i0.wp.com/visitbalitour.com/wp-content/uploads/2025/10/Bali-8-days-package.jpg?w=1500&ssl=1&auto=format&fit=crop" alt="Bali Rice Terraces">
+										</div>
+										<div class="dest-info">
+												<h4>Bali</h4>
+												<p>Spirits of the Canopy</p>
+										</div>
+								</a>
+								<a href="#" class="dest-card">
+    								<div class="dest-image-wrapper">
+        								<img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/15/33/fc/b3/patagonia.jpg?w=600&h=500&s=1&auto=format&fit=crop" alt="Patagonia Peaks">
+    								</div>
+   									<div class="dest-info">
+        								<h4>Patagonia</h4>
+        								<p>At the Edge of the World</p>
+    								</div>
+								</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- 5. Minimalist Footer -->
+    <footer class="site-footer">
+        <div class="footer-top">
+            <h2 class="footer-brand">Storyscapes.</h2>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Explore</h4>
+                    <a href="#">Destinations</a>
+                    <a href="#">Journals</a>
+                    <a href="#">Local Voices</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="#">Our Ethos</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Press</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Storyscapes. All stories reserved.</p>
+            <div class="legal-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GSAP & ScrollTrigger Core -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Main JS -->
+    <script src="./js/main.js"></script>
+</body>
+</html>
