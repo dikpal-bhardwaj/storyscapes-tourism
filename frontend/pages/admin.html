@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storyscapes | Curator Studio</title>
+    
+    <script>
+        const user = JSON.parse(localStorage.getItem('storyscapes_user'));
+        if (!user || user.role !== 'admin') window.location.replace('./auth.html');
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="curator-body">
+    
+    <div class="noise-overlay"></div>
+
+    <nav class="navbar" id="global-nav" style="opacity: 1; background: var(--bg-primary);">
+        <div class="nav-brand">
+            <a href="../index.html" style="text-decoration:none; color:inherit;">Storyscapes.</a>
+        </div>
+        <div class="nav-links">
+            <a href="./destinations.html" class="nav-link">Destinations</a>
+            <a href="./explore.html" class="nav-link">Stories</a>
+            <!-- <span class="nav-link" style="opacity: 0.5;">Curator Desk</span> -->
+        </div>
+        <div class="nav-actions" id="nav-actions">
+            <button id="admin-logout-nav" class="btn-ghost" style="font-size: 0.9rem;">Sign Out</button>
+        </div>
+    </nav>
+
+    <div id="curator-toast" class="curator-toast"></div>
+
+    <main class="curator-container">
+        
+        <aside class="curator-sidebar gs-reveal">
+            <div class="curator-profile">
+                <div class="curator-avatar" id="admin-initial">C</div>
+                <div class="curator-info">
+                    <span class="curator-role">Chief Curator</span>
+                    <h2 id="admin-name">Admin</h2>
+                </div>
+            </div>
+            
+            <nav class="curator-nav">
+                <button class="curator-tab active" data-target="view-dest">New Destination</button>
+                <button class="curator-tab" data-target="view-edit-dest">Refine Atlas</button>
+                <button class="curator-tab" data-target="view-stor">Story Moderation</button>
+            </nav>
+        </aside>
+
+        <div class="curator-workspace">
+            
+            <section id="view-dest" class="curator-view active-view">
+                <header class="curator-header gs-reveal">
+                    <span class="curator-eyebrow">NEW HORIZONS</span>
+                    <h1 class="curator-title">Expand the <em>atlas.</em></h1>
+                </header>
+
+                <div class="curator-split-layout">
+                    <div class="curator-card gs-reveal">
+                        <h3 class="card-title">Establish Coordinates</h3>
+                        <form id="form-dest" class="curator-form">
+                            <input type="text" id="dest-name" class="curator-input" required placeholder="Destination Name (e.g., Kyoto)">
+                            <input type="text" id="dest-tagline" class="curator-input" required placeholder="Tagline (e.g., The Silent Temples)">
+                            <input type="url" id="dest-image" class="curator-input" required placeholder="Hero Image URL (Unsplash Link)">
+                            <textarea id="dest-desc" class="curator-input" required placeholder="Write an immersive description..." rows="4"></textarea>
+                            <textarea id="dest-culture" class="curator-input" placeholder="Cultural context or ephemera..." rows="2"></textarea>
+                            <button type="submit" class="curator-btn">Publish to Atlas</button>
+                        </form>
+                    </div>
+
+                    <div class="curator-archive gs-reveal">
+                        <h3 class="card-title">Active Atlas</h3>
+                        <div id="list-dest" class="curator-record-list">
+                            </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="view-edit-dest" class="curator-view">
+                <header class="curator-header">
+                    <span class="curator-eyebrow">REVISION</span>
+                    <h1 class="curator-title">Refine <em>destinations.</em></h1>
+                </header>
+                
+                <div class="curator-card" style="max-width: 800px;">
+                    <form id="form-edit-dest" class="curator-form">
+                        <select id="edit-dest-select" class="curator-input select-mode" required>
+                            <option value="" disabled selected>Select a destination from the archives...</option>
+                        </select>
+                        
+                        <div class="curator-form-row">
+                            <input type="text" id="edit-dest-name" class="curator-input" required placeholder="Destination Name">
+                            <input type="text" id="edit-dest-tagline" class="curator-input" required placeholder="Tagline">
+                        </div>
+                        
+                        <input type="url" id="edit-dest-image" class="curator-input" required placeholder="Hero Image URL">
+                        <textarea id="edit-dest-desc" class="curator-input" required placeholder="Immersive description..." rows="5"></textarea>
+                        <textarea id="edit-dest-culture" class="curator-input" placeholder="Cultural context..." rows="3"></textarea>
+                        
+                        <button type="submit" class="curator-btn">Commit Revision</button>
+                    </form>
+                </div>
+            </section>
+
+            <section id="view-stor" class="curator-view">
+                <header class="curator-header">
+                    <span class="curator-eyebrow">COMMUNITY</span>
+                    <h1 class="curator-title">Traveler <em>journals.</em></h1>
+                    <p style="color: var(--text-muted); margin-top: 1rem;">Review and moderate public entries.</p>
+                </header>
+
+                <div class="curator-card" style="background: transparent; border: none; padding: 0;">
+                    <div id="list-stor" class="curator-record-list wide-mode">
+                        </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-top">
+            <h2 class="footer-brand">Storyscapes.</h2>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Explore</h4>
+                    <a href="./destinations.html">Destinations</a>
+                    <a href="./explore.html">Journals</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="./contact.html">Contact</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Storyscapes. All stories reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/admin.js"></script>
+</body>
+</html>

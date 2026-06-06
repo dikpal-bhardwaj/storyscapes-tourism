@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storyscapes | Traveler Profile</title>
+    
+    <script>
+        const user = JSON.parse(localStorage.getItem('storyscapes_user'));
+        if (!user) window.location.replace('./auth.html');
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="lux-body"> 
+    
+    <div class="noise-overlay"></div>
+    <div class="ambient-glow glow-1" style="opacity: 0.3;"></div>
+
+    <nav class="navbar" id="global-nav" style="opacity: 1;">
+        <div class="nav-brand">
+            <a href="../index.html" style="text-decoration:none; color:inherit;">Storyscapes.</a>
+        </div>
+        <div class="nav-links">
+            <a href="./destinations.html" class="nav-link">Destinations</a>
+            <a href="./explore.html" class="nav-link">Stories</a>
+            <a href="./profile.html" class="nav-link active">Journal</a>
+        </div>
+        <div class="nav-actions" id="nav-actions">
+            <button id="prof-logout-nav" class="btn-ghost" style="font-size: 0.9rem;">Sign Out</button>
+        </div>
+    </nav>
+
+    <div id="prof-toast" class="lux-toast"></div>
+
+    <main class="lux-profile-container">
+        
+        <aside class="lux-sidebar gs-reveal">
+            <div class="lux-user-badge">
+                <div class="lux-avatar" id="prof-initial">U</div>
+                <div>
+                    <span class="lux-greeting">Welcome back,</span>
+                    <h2 class="lux-name" id="prof-name">Traveler</h2>
+                </div>
+            </div>
+            
+            <nav class="lux-nav-menu">
+                <button class="lux-tab active" data-target="tab-journal">My Journal</button>
+                <button class="lux-tab" data-target="tab-draft">Draft a Story</button>
+                <button class="lux-tab" data-target="tab-bucketlist">The Atlas</button>
+                <button class="lux-tab" data-target="tab-settings">Preferences</button>
+            </nav>
+        </aside>
+
+        <div class="lux-workspace">
+            
+            <section id="tab-journal" class="lux-view active-view">
+                <header class="lux-header gs-reveal">
+                    <span class="lux-eyebrow">YOUR LEGACY</span>
+                    <h1 class="lux-title">Past <em>journeys.</em></h1>
+                    <p class="lux-subtitle">A collection of the moments and memories you've chosen to immortalize.</p>
+                </header>
+                
+                <div id="journal-grid" class="lux-story-grid">
+                    </div>
+            </section>
+
+            <section id="tab-draft" class="lux-view">
+                <header class="lux-header">
+                    <span class="lux-eyebrow" id="draft-eyebrow">AUTHOR</span>
+                    <h1 class="lux-title" id="draft-title">Chronicle a <em>memory.</em></h1>
+                </header>
+                
+                <div class="lux-form-container">
+                    <form id="form-write" class="lux-form">
+                        <div class="lux-input-group">
+                            <input type="text" id="write-title" class="lux-input" required placeholder="The title of your narrative">
+                        </div>
+                        <div class="lux-input-group">
+                            <select id="write-dest" class="lux-input" required>
+                                <option value="" disabled selected>Select the destination from the Atlas</option>
+                            </select>
+                        </div>
+                        <div class="lux-input-group">
+                            <textarea id="write-content" class="lux-input" required placeholder="Begin writing your story here..." rows="10"></textarea>
+                        </div>
+                        <div class="lux-input-group">
+                            <textarea id="write-images" class="lux-input" placeholder="Image URLs (Optional, separate multiple with commas)" rows="2"></textarea>
+                        </div>
+                        <div class="lux-form-actions">
+                            <button type="button" id="cancel-edit-btn" class="lux-btn-outline" style="display: none;">Cancel Edit</button>
+                            <button type="submit" id="submit-story-btn" class="lux-btn-primary">Publish to Journal</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <section id="tab-bucketlist" class="lux-view">
+                <header class="lux-header">
+                    <span class="lux-eyebrow">WANDERLUST</span>
+                    <h1 class="lux-title">The <em>bucket list.</em></h1>
+                    <p class="lux-subtitle">Destinations awaiting your arrival.</p>
+                </header>
+                
+                <div id="grid-bucketlist" class="lux-bucket-grid">
+                    </div>
+            </section>
+
+            <section id="tab-settings" class="lux-view">
+                <header class="lux-header">
+                    <span class="lux-eyebrow">ACCOUNT</span>
+                    <h1 class="lux-title">Personal <em>preferences.</em></h1>
+                </header>
+                
+                <div class="lux-settings-layout">
+                    <div class="lux-settings-block">
+                        <h3>Your Details</h3>
+                        <form id="form-profile" class="lux-form">
+                            <div class="lux-input-group">
+                                <label>Full Name</label>
+                                <input type="text" id="set-name" class="lux-input" required>
+                            </div>
+                            <div class="lux-input-group">
+                                <label>Email Address</label>
+                                <input type="email" id="set-email" class="lux-input" required>
+                            </div>
+                            <button type="submit" class="lux-btn-outline">Save Changes</button>
+                        </form>
+                    </div>
+
+                    <div class="lux-settings-block">
+                        <h3>Security</h3>
+                        <form id="form-password" class="lux-form">
+                            <div class="lux-input-group">
+                                <input type="password" id="old-pass" class="lux-input" required placeholder="Current Password">
+                            </div>
+                            <div class="lux-input-group">
+                                <input type="password" id="new-pass" class="lux-input" required placeholder="New Password" minlength="6">
+                            </div>
+                            <div class="lux-input-group">
+                                <input type="password" id="confirm-pass" class="lux-input" required placeholder="Confirm New Password" minlength="6">
+                            </div>
+                            <button type="submit" class="lux-btn-outline">Update Password</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-top">
+            <h2 class="footer-brand">Storyscapes.</h2>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Explore</h4>
+                    <a href="./destinations.html">Destinations</a>
+                    <a href="./explore.html">Journals</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="./contact.html">Contact</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Storyscapes. All stories reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/profile.js"></script>
+</body>
+</html>

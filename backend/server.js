@@ -6,6 +6,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const connectDB = require('./config/db');
+const storyRoutes = require('./routes/storyRoutes');
 
 dotenv.config();
 
@@ -28,6 +29,8 @@ app.get('/api', (req, res) => {
 app.use('/api/destinations', destinationRoutes);
 
 app.use('/api/auth', authRoutes);
+
+app.use('/api/stories', storyRoutes);
 
 app.use((req, res, next) => {
     res.status(404).json({ status: 'error', message: 'Route not found in the Storyscape.' });

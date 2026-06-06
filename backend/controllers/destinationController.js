@@ -39,4 +39,88 @@ const seedDestinations = async (req, res, next) => {
     }
 };
 
-module.exports = { getDestinations, seedDestinations };
+// @desc    Create a new destination
+// @route   POST /api/destinations
+// @access  Private/Admin
+const createDestination = async (req, res, next) => {
+    try {
+        const destination = await Destination.create(req.body);
+        res.status(201).json({ status: 'success', data: destination });
+    } catch (error) { next(error); }
+};
+
+// @desc    Delete a destination
+// @route   DELETE /api/destinations/:id
+// @access  Private/Admin
+const deleteDestination = async (req, res, next) => {
+    try {
+        const destination = await Destination.findByIdAndDelete(req.params.id);
+        if (!destination) {
+            return res.status(404).json({ status: 'error', message: 'Destination not found in the archives.' });
+        }
+        res.json({ status: 'success', message: 'Destination permanently removed.' });
+    } catch (error) { next(error); }
+};
+
+// @desc    Update a destination
+// @route   PUT /api/destinations/:id
+// @access  Private/Admin
+const updateDestination = async (req, res) => { // <-- CHANGED TO const AND REMOVED THE 's'
+    try {
+        const destination = await Destination.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { new: true, runValidators: true }
+        );
+
+        if (!destination) {
+            return res.status(404).json({ 
+                success: false, 
+                message: 'Destination not found in the atlas.' 
+            });
+        }
+
+        res.status(200).json({ 
+            success: true, 
+            data: destination 
+        });
+        
+    } catch (error) {
+        console.error("Update Destination Error:", error);
+        res.status(500).json({ 
+            success: false, 
+            message: 'Server Error while updating destination.',
+            error: error.message
+        });
+    }
+};
+
+// @desc    Get a single destination
+// @route   GET /api/destinations/:id
+// @access  Public
+const getDestination = async (req, res, next) => {
+    try {
+        const destination = await Destination.findById(req.params.id);
+        
+        if (!destination) {
+            return res.status(404).json({ 
+                status: 'error', 
+                message: 'Destination not found in the atlas.' 
+            });
+        }
+
+        res.json({ status: 'success', data: destination });
+    } catch (error) {
+        next(error);
+    }
+};
+
+// Add getDestination to your exports at the bottom!
+module.exports = { 
+    getDestinations, 
+    getDestination, // <-- Add this
+    seedDestinations, 
+    createDestination, 
+    updateDestination, 
+    deleteDestination 
+};

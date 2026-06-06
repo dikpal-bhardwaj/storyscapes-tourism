@@ -12,7 +12,15 @@ document.addEventListener("DOMContentLoaded", () => {
       .from(".auth-form-shell", { x: 50, opacity: 0, duration: 1.5 }, "-=1.5")
       .from(".auth-nav", { opacity: 0, y: -20 }, "-=1");
 
-    // 2. Mouse Parallax for the Floating Visual Frame
+    // 2. Smart Redirect Logic: Check if user clicked "Start Journey"
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('action') === 'register') {
+        setTimeout(() => {
+            toggleAuth('register');
+        }, 800); 
+    }
+
+    // 3. Mouse Parallax for the Floating Visual Frame
     document.addEventListener("mousemove", (e) => {
         const x = (window.innerWidth / 2 - e.pageX) / 35;
         const y = (window.innerHeight / 2 - e.pageY) / 35;
@@ -96,7 +104,15 @@ document.getElementById('register-form').addEventListener('submit', async (e) =>
             localStorage.setItem('storyscapes_token', data.data.token);
             localStorage.setItem('storyscapes_user', JSON.stringify(data.data));
             showMessage('Narrative created. Welcome aboard!', 'success');
-            setTimeout(() => window.location.href = '../index.html', 1500);
+            
+            // SMART REDIRECT
+            setTimeout(() => {
+                if (data.data.role === 'admin') {
+                    window.location.href = './admin.html';
+                } else {
+                    window.location.href = './profile.html';
+                }
+            }, 1500);
         } else {
             showMessage(data.message, 'error');
         }
@@ -124,7 +140,15 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
             localStorage.setItem('storyscapes_token', data.data.token);
             localStorage.setItem('storyscapes_user', JSON.stringify(data.data));
             showMessage('Your journey continues...', 'success');
-            setTimeout(() => window.location.href = '../index.html', 1500);
+            
+            // SMART REDIRECT
+            setTimeout(() => {
+                if (data.data.role === 'admin') {
+                    window.location.href = './admin.html';
+                } else {
+                    window.location.href = './profile.html';
+                }
+            }, 1500);
         } else {
             showMessage(data.message, 'error');
         }

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storyscapes | Destination</title>
+    <link rel="stylesheet" href="../css/style.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+
+    <nav class="navbar" id="global-nav">
+        <div class="nav-brand">
+            <a href="../index.html" style="text-decoration:none; color:inherit;">Storyscapes.</a>
+        </div>
+        <div class="nav-links">
+            <a href="./destinations.html" class="nav-link">Destinations</a>
+            <a href="./explore.html" class="nav-link">Stories</a>
+            <a href="./profile.html" class="nav-link">Journal</a>
+        </div>
+        <div class="nav-actions" id="nav-actions">
+            <a href="./auth.html" class="btn-primary">Sign In</a>
+        </div>
+    </nav>
+
+    <div id="loader" style="position:fixed; top:0; left:0; width:100vw; height:100vh; background:var(--bg-primary); z-index:999; display:flex; justify-content:center; align-items:center; font-family:var(--font-heading); font-style:italic; font-size:1.5rem;">
+        <p>Unfolding the map...</p>
+    </div>
+
+    <main class="destination-page" id="main-content" style="opacity: 0;">
+        
+        <section class="dest-hero">
+            <div class="dest-hero-text">
+                <a href="../pages/destinations.html" class="back-link">← Back to Atlas</a>
+                <span class="dest-tagline" id="dest-tagline"></span>
+                <h1 class="dest-title" id="dest-name"></h1>
+                
+                <div class="dest-actions" style="margin-top: 2.5rem; opacity: 0; transform: translateY(20px);">
+                    <button id="bucketlist-btn" class="btn-bucketlist">
+                        <span class="btn-icon">+</span>
+                        <span class="btn-text">Save to Atlas</span>
+                    </button>
+                </div>
+            </div>
+            <div class="dest-hero-visual">
+                <div class="visual-wrapper">
+                    <img src="" id="dest-image" alt="Destination">
+                </div>
+            </div>
+        </section>
+
+        <section class="single-destination-archive">
+            <div class="noise-overlay"></div>
+            
+            <div class="archive-chronicle-page">
+                <div class="chronicle-entry">
+                    <span class="entry-meta" id="dest-meta-title">A CHRONICLE | CHAPTER ONE</span>
+                    <h2 class="chronicle-heading">The Narrative</h2>
+                    <p class="chronicle-text" id="dest-desc"></p>
+                </div>
+                
+                <div class="ephemera-wrapper" id="culture-block">
+                    <div class="postcard-culture">
+                        <div class="postcard-head">
+                            <span class="stamp-distressed">POSTMARK: ARCHIVE</span>
+                            <span class="label-heading">LOCAL CULTURE</span>
+                        </div>
+                        <div class="postcard-content">
+                            <p class="body-text" id="dest-culture"></p>
+                        </div>
+                    </div>
+                    <svg class="hand-drawn quill-vector" viewBox="0 0 100 100">
+                        <path d="M70.7,29.3c-1.6-1.6-4.2-1.6-5.8,0L34.1,60.1l-6.8,11.8l11.8-6.8l30.8-30.8C72.3,33.4,72.3,30.9,70.7,29.3z M37.6,62.4l-3.3-3.3l27.1-27.1l3.3,3.3L37.6,62.4z"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="chronicle-echoes-from-travelers">
+                <h4 class="echoes-heading">Echoes from Travelers</h4>
+                
+                <div id="stories-grid" class="stories-grid" style="display: none;"></div>
+
+                <div id="empty-stories-state" class="echoes-placeholder-block" style="display: none;">
+                    <p class="placeholder-text">Everything's quiet here. The map is blank.</p>
+                    <a href="./profile.html" class="cta-btn write-story-btn" id="write-story-cta">
+                        <svg class="icon-quill" viewBox="0 0 100 100">
+                           <path d="M70.7,29.3c-1.6-1.6-4.2-1.6-5.8,0L34.1,60.1l-6.8,11.8l11.8-6.8l30.8-30.8C72.3,33.4,72.3,30.9,70.7,29.3z"/>
+                        </svg>
+                        Write the First Story
+                        <span class="btn-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-top">
+            <h2 class="footer-brand">Storyscapes.</h2>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Explore</h4>
+                    <a href="./destinations.html">Destinations</a>
+                    <a href="./explore.html">Journals</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="./contact.html">Contact</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Storyscapes. All stories reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="../js/nav.js"></script>
+    <script src="../js/singleDestination.js"></script>
+</body>
+</html>

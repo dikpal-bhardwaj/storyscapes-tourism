@@ -1,0 +1,9 @@
+Elena Rostova	elena@example.com	User	Story2026!
+Marcus Vance	marcus@example.com	User	Story2026!
+Aisha Khan	aisha@example.com	User	Story2026!
+Julian Wright	julian@example.com	User	Story2026!
+Chloe Chen	chloe@example.com	User	Story2026!
+Liam O'Connor	liam@example.com	User	Story2026!
+Sofia Rossi	sofia@example.com	User	Story2026!
+Noah Silva	noah@example.com	User	Story2026!
+Zoe Dupont	zoe@example.com	User	Story2026!
